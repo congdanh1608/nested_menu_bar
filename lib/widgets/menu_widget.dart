@@ -18,7 +18,7 @@ class MenuWidget extends StatefulWidget {
   final GlobalKey<State<StatefulWidget>>? selectedMenuKey;
 
   final void Function(GlobalKey<State<StatefulWidget>>? key)?
-  setSelectedMenuKey;
+      setSelectedMenuKey;
 
   //pop up menu item properties
   final Color? popUpMenuItemBackgroundColor;
@@ -40,36 +40,33 @@ class MenuWidget extends StatefulWidget {
   final Color? menuBarItemColor;
   final Color? menuBarItemHoverColor;
 
-
-  MenuWidget(
-      this.menu, {
-        required this.goBackButtonText,
-        required this.showBackButton,
-        required this.height,
-        // required this.backgroundColor,
-        required this.style,
-        required this.mode,
-        this.selectedMenuKey,
-        this.setSelectedMenuKey,
+  MenuWidget(this.menu,
+      {required this.goBackButtonText,
+      required this.showBackButton,
+      required this.height,
+      // required this.backgroundColor,
+      required this.style,
+      required this.mode,
+      this.selectedMenuKey,
+      this.setSelectedMenuKey,
       //pop up menu items properties
-        this.popUpMenuItemBackgroundColor,
-        this.popUpMenuItemHoverBackgroundColor,
-        this.popUpMenuItemBorderRadius,
-        this.popUpMenuItemBorderColor,
-        this.popUpMenuItemBorderWidth,
-        this.popUpMenuItemPadding,
-        this.popUpMenuItemForegroundColor,
-        this.popUpMenuItemHoverForegroundColor,
+      this.popUpMenuItemBackgroundColor,
+      this.popUpMenuItemHoverBackgroundColor,
+      this.popUpMenuItemBorderRadius,
+      this.popUpMenuItemBorderColor,
+      this.popUpMenuItemBorderWidth,
+      this.popUpMenuItemPadding,
+      this.popUpMenuItemForegroundColor,
+      this.popUpMenuItemHoverForegroundColor,
 
-        //pop up menu properties
-        this.popUpPadding,
-        this.popUpDecoration,
+      //pop up menu properties
+      this.popUpPadding,
+      this.popUpDecoration,
 
-        //menu bar menu properties
-        this.menuBarItemColor,
-        this.menuBarItemHoverColor
-
-      }) : super(key: menu.key);
+      //menu bar menu properties
+      this.menuBarItemColor,
+      this.menuBarItemHoverColor})
+      : super(key: menu.key);
 
   @override
   State<MenuWidget> createState() => MenuWidgetState();
@@ -98,7 +95,6 @@ class MenuWidgetState extends State<MenuWidget> {
         ? widget.style.selectedTopMenuTextStyle
         : widget.style.textStyle;
   }
-  
 
   @override
   void dispose() {
@@ -127,11 +123,12 @@ class MenuWidgetState extends State<MenuWidget> {
 
     switch (widget.mode) {
       case NestedMenuBarMode.hover:
-        _showHoveredPopupMenu(context,
-        menu: menu,
-          menuItems:  menu.children!,
-        decoration:  widget.popUpDecoration,
-        padding: widget.popUpPadding??0,
+        _showHoveredPopupMenu(
+          context,
+          menu: menu,
+          menuItems: menu.children!,
+          decoration: widget.popUpDecoration,
+          padding: widget.popUpPadding ?? 0,
         );
         break;
       case NestedMenuBarMode.tap:
@@ -141,20 +138,18 @@ class MenuWidgetState extends State<MenuWidget> {
   }
 
   void _showHoveredPopupMenu(
-      BuildContext context,
-    {  
-      required NestedMenuItem menu,
-     required List<NestedMenuItem> menuItems,
-      required BoxDecoration? decoration,
-      required double padding,
-      }
-) {
+    BuildContext context, {
+    required NestedMenuItem menu,
+    required List<NestedMenuItem> menuItems,
+    required BoxDecoration? decoration,
+    required double padding,
+  }) {
     if (_disposed) return;
     if (_popups.containsKey(menu.key.toString())) return;
     if (!menu.hasContext) return;
 
     final RenderBox overlay =
-    Overlay.of(context).context.findRenderObject() as RenderBox;
+        Overlay.of(context).context.findRenderObject() as RenderBox;
 
     const double itemMinWidth = 150.0;
     const double itemMinHeight = 43.0;
@@ -162,7 +157,7 @@ class MenuWidgetState extends State<MenuWidget> {
     final Size menuSize = menu.size;
     final bool rootMenu = menu.parent == null;
     final Offset positionOffset =
-    rootMenu ? Offset(0, widget.height) : Offset(menuSize.width - 10, 10);
+        rootMenu ? Offset(0, widget.height) : Offset(menuSize.width - 10, 10);
 
     Offset position = menuPosition + positionOffset;
     double? top = position.dy;
@@ -201,7 +196,7 @@ class MenuWidgetState extends State<MenuWidget> {
         }
       }
     }
-      
+
     _popups[menu.key.toString()] = OverlayEntry(
       builder: (_) {
         Widget buildItemWidget(NestedMenuItem item) {
@@ -214,17 +209,18 @@ class MenuWidgetState extends State<MenuWidget> {
             menuIconColor: widget.style.iconColor,
             moreIconColor: widget.style.moreIconColor,
             menuIconSize: widget.style.iconSize,
-            
+
             //pop up menu item properties
             popUpMenuItemBackgroundColor: widget.popUpMenuItemBackgroundColor,
-            popUpMenuItemHoverBackgroundColor: widget.popUpMenuItemHoverBackgroundColor,
+            popUpMenuItemHoverBackgroundColor:
+                widget.popUpMenuItemHoverBackgroundColor,
             popUpMenuItemBorderRadius: widget.popUpMenuItemBorderRadius,
             popUpMenuItemBorderColor: widget.popUpMenuItemBorderColor,
             popUpMenuItemBorderWidth: widget.popUpMenuItemBorderWidth,
             popUpMenuItemPadding: widget.popUpMenuItemPadding,
             popUpMenuItemForegroundColor: widget.popUpMenuItemForegroundColor,
-            popUpMenuItemHoverForegroundColor: widget.popUpMenuItemHoverForegroundColor,
-        
+            popUpMenuItemHoverForegroundColor:
+                widget.popUpMenuItemHoverForegroundColor,
           );
 
           if (item.type.isDivider) return menuItemWidget;
@@ -263,45 +259,49 @@ class MenuWidgetState extends State<MenuWidget> {
           );
         }
 
-        onHover(_) { 
+        onHover(_) {
           // isHovered=true;
-          _addHoveredPopupKey(menu);}
+          _addHoveredPopupKey(menu);
+        }
 
         onExit(_) {
           // isHovered=false;
           _removeHoveredPopupKey(menu);
-          }
+        }
 
         //final menuItemWidgets = menuItems.map(buildItemWidget).toList();
 
         return Positioned(
           top: top,
           // left: left!+35,
-          left: left!+20,
+          left: left! + 20,
           right: right,
           bottom: bottom,
           child: ClipRRect(
-          borderRadius:decoration?.borderRadius?? BorderRadius.circular(0),
+            borderRadius: decoration?.borderRadius ?? BorderRadius.circular(0),
             child: Material(
               child: Container(
                 padding: EdgeInsets.all(padding),
-                decoration:decoration??const BoxDecoration(color: Colors.white,),
-                  child: MouseRegion(
-                    onHover: onHover,
-                    onExit: onExit,
-                    child: IntrinsicWidth(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            for(var menu in menuItems) ...{
-                              buildItemWidget(menu),
-                            },
-                          ],
-                        ),
+                decoration: decoration ??
+                    const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                child: MouseRegion(
+                  onHover: onHover,
+                  onExit: onExit,
+                  child: IntrinsicWidth(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for (var menu in menuItems) ...{
+                            buildItemWidget(menu),
+                          },
+                        ],
                       ),
                     ),
                   ),
+                ),
               ),
             ),
           ),
@@ -313,10 +313,10 @@ class MenuWidgetState extends State<MenuWidget> {
   }
 
   void _showTappedPopupMenu(
-      NestedMenuItem menu,
-      BuildContext context,
-      List<NestedMenuItem> menuItems,
-) {
+    NestedMenuItem menu,
+    BuildContext context,
+    List<NestedMenuItem> menuItems,
+  ) {
     if (_disposed) return;
     if (!menu.hasContext) return;
     final items = [...menuItems];
@@ -331,14 +331,14 @@ class MenuWidgetState extends State<MenuWidget> {
     }
 
     final RenderBox overlay =
-    Overlay.of(context).context.findRenderObject() as RenderBox;
+        Overlay.of(context).context.findRenderObject() as RenderBox;
 
     final Offset position = widget.menu.position + Offset(0, widget.height - 1);
 
     showMenu(
       context: context,
       position: RelativeRect.fromLTRB(
-        position.dx+35,
+        position.dx + 35,
         position.dy,
         position.dx + overlay.size.width,
         position.dy + overlay.size.height,
@@ -356,13 +356,15 @@ class MenuWidgetState extends State<MenuWidget> {
 
           //pop up menu item properties
           popUpMenuItemBackgroundColor: widget.popUpMenuItemBackgroundColor,
-          popUpMenuItemHoverBackgroundColor: widget.popUpMenuItemHoverBackgroundColor,
+          popUpMenuItemHoverBackgroundColor:
+              widget.popUpMenuItemHoverBackgroundColor,
           popUpMenuItemBorderRadius: widget.popUpMenuItemBorderRadius,
           popUpMenuItemBorderColor: widget.popUpMenuItemBorderColor,
           popUpMenuItemBorderWidth: widget.popUpMenuItemBorderWidth,
           popUpMenuItemPadding: widget.popUpMenuItemPadding,
           popUpMenuItemForegroundColor: widget.popUpMenuItemForegroundColor,
-          popUpMenuItemHoverForegroundColor: widget.popUpMenuItemHoverForegroundColor,
+          popUpMenuItemHoverForegroundColor:
+              widget.popUpMenuItemHoverForegroundColor,
         );
 
         double height = kMinInteractiveDimension;
@@ -381,10 +383,11 @@ class MenuWidgetState extends State<MenuWidget> {
         );
       }).toList(growable: false),
       elevation: 2.0,
-      color: widget.popUpDecoration?.color??Colors.white,
+      color: widget.popUpDecoration?.color ?? Colors.white,
       useRootNavigator: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(widget.popUpMenuItemBorderRadius??8), // Set desired border radius
+        borderRadius: BorderRadius.circular(
+            widget.popUpMenuItemBorderRadius ?? 8), // Set desired border radius
       ),
     ).then((selectedMenu) async {
       if (selectedMenu == null) return;
@@ -399,7 +402,6 @@ class MenuWidgetState extends State<MenuWidget> {
       }
     });
   }
-
 
   void _addHoveredPopupKey(NestedMenuItem menu, {bool addSelf = true}) {
     if (addSelf) _hoveredPopupKey.add(menu.key.toString());
@@ -454,7 +456,6 @@ class MenuWidgetState extends State<MenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    
     Widget menuWidget = InkWell(
       onTap: () async {
         _setSelectedMenuKey();
@@ -475,8 +476,8 @@ class MenuWidgetState extends State<MenuWidget> {
           // Text(widget.menu.title, style: textStyle),
           _AppBarMenuItem(
             menu: widget.menu,
-            color: widget.menuBarItemColor??Colors.black,
-            hoverColor: widget.menuBarItemHoverColor??Colors.blue,
+            color: widget.menuBarItemColor ?? Colors.black,
+            hoverColor: widget.menuBarItemHoverColor ?? Colors.blue,
           ),
         ],
       ),
@@ -512,7 +513,6 @@ class MenuWidgetState extends State<MenuWidget> {
   }
 }
 
-
 class _AppBarMenuItem extends StatefulWidget {
   const _AppBarMenuItem({
     required this.menu,
@@ -523,8 +523,6 @@ class _AppBarMenuItem extends StatefulWidget {
   final NestedMenuItem menu;
   final Color color;
   final Color hoverColor;
-
-
 
   @override
   State<_AppBarMenuItem> createState() => __AppBarMenuItemState();
@@ -539,23 +537,22 @@ class __AppBarMenuItemState extends State<_AppBarMenuItem> {
       onExit: (event) => setState(() => _isHovered = false),
       child: Row(
         children: [
-            Icon(widget.menu.icon,
+          Icon(
+            widget.menu.icon,
+            color: _isHovered ? widget.hoverColor : widget.color,
+          ),
+          const SizedBox(width: 5),
+          Text(widget.menu.title,
+              style: TextStyle(
                 color: _isHovered ? widget.hoverColor : widget.color,
-              ),
-            const SizedBox(width: 5),
-            Text(widget.menu.title, style: TextStyle(
-              color: _isHovered ? widget.hoverColor : widget.color,
-            )),
+              )),
         ],
       ),
     );
   }
 }
 
-
 class _ItemWidget extends StatelessWidget {
-
-
   final NestedMenuItem menu;
 
   final double iconScale;
@@ -572,7 +569,6 @@ class _ItemWidget extends StatelessWidget {
 
   final double menuIconSize;
 
-
   //pop up menu item properties
   final Color? popUpMenuItemBackgroundColor;
   final Color? popUpMenuItemHoverBackgroundColor;
@@ -585,8 +581,7 @@ class _ItemWidget extends StatelessWidget {
   final Color? popUpMenuItemForegroundColor;
   final Color? popUpMenuItemHoverForegroundColor;
 
-
-    const _ItemWidget({
+  const _ItemWidget({
     required this.menu,
     required this.iconScale,
     required this.unselectedColor,
@@ -608,23 +603,23 @@ class _ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     switch (menu.type) {
       case NestedMenuItemType.button:
         //* Button item widget is used to create a button like menu item
         return ButtonItemWidget(
           menu: menu,
-          color:popUpMenuItemBackgroundColor?? Colors.white,
-          hoverColor: popUpMenuItemHoverBackgroundColor??Colors.blue,
-          borderRadius: popUpMenuItemBorderRadius?? 0,
-          borderColor: popUpMenuItemBorderColor??Colors.transparent,
-          borderWidth: popUpMenuItemBorderWidth??0,
-          padding: popUpMenuItemPadding??10,
-          foregroundColor: popUpMenuItemForegroundColor??Colors.black,
-          hoverForegroundColor: popUpMenuItemHoverForegroundColor??Colors.white,
+          color: popUpMenuItemBackgroundColor ?? Colors.white,
+          hoverColor: popUpMenuItemHoverBackgroundColor ?? Colors.blue,
+          borderRadius: popUpMenuItemBorderRadius ?? 0,
+          borderColor: popUpMenuItemBorderColor ?? Colors.transparent,
+          borderWidth: popUpMenuItemBorderWidth ?? 0,
+          padding: popUpMenuItemPadding ?? 10,
+          foregroundColor: popUpMenuItemForegroundColor ?? Colors.black,
+          hoverForegroundColor:
+              popUpMenuItemHoverForegroundColor ?? Colors.white,
         );
       case NestedMenuItemType.checkbox:
-      //* Checkbox item widget is used to create a checkbox like menu item
+        //* Checkbox item widget is used to create a checkbox like menu item
         return CheckboxItemWidget(
           menu: menu as NestedMenuItemCheckbox,
           iconScale: iconScale,
@@ -632,22 +627,28 @@ class _ItemWidget extends StatelessWidget {
           activatedColor: menuIconColor,
           indicatorColor: indicatorColor,
           moreIconColor: moreIconColor,
-          textStyle: const TextStyle(color: Colors.black,fontSize: 14,),
+          textStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 14,
+          ),
         );
       case NestedMenuItemType.radio:
-      //* Radio item widget is used to create a radio like menu item
+        //* Radio item widget is used to create a radio like menu item
         return RadioItemWidget(
           menu: menu as NestedMenuItemRadio,
           iconScale: iconScale,
           activatedColor: activatedColor,
           unselectedColor: unselectedColor,
-          textStyle: const TextStyle(color: Colors.black,fontSize: 14,),
+          textStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 14,
+          ),
         );
       case NestedMenuItemType.widget:
-      //* Widget item widget is used to create a custom widget like menu item
+        //* Widget item widget is used to create a custom widget like menu item
         return (menu as NestedMenuItemWidget).widget;
       case NestedMenuItemType.divider:
-      //* Divider item widget is used to create a divider like menu item
+        //* Divider item widget is used to create a divider like menu item
         final dividerItem = menu as NestedMenuItemDivider;
         return Divider(
           color: dividerItem.color,
@@ -658,5 +659,3 @@ class _ItemWidget extends StatelessWidget {
     }
   }
 }
-
-

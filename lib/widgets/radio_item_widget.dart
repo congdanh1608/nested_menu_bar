@@ -1,6 +1,5 @@
 part of '../nested_menu_bar.dart';
 
-
 class RadioItemWidget extends StatefulWidget {
   const RadioItemWidget({
     required this.menu,
@@ -47,7 +46,7 @@ class _RadioItemWidgetState extends State<RadioItemWidget> {
 
   Widget buildChild(e) {
     final String title =
-    widget.menu.getTitle == null ? e.toString() : widget.menu.getTitle!(e);
+        widget.menu.getTitle == null ? e.toString() : widget.menu.getTitle!(e);
 
     return ListTile(
       title: Text(title, style: widget.textStyle),

@@ -1,8 +1,7 @@
 part of '../nested_menu_bar.dart';
 
-
 class ButtonItemWidget extends StatefulWidget {
-    const ButtonItemWidget({
+  const ButtonItemWidget({
     required this.menu,
     required this.color,
     required this.hoverColor,
@@ -45,13 +44,13 @@ class _ButtonItemWidgetState extends State<ButtonItemWidget> {
   bool _isHovered = false;
   @override
   Widget build(BuildContext context) {
-      return MouseRegion(
+    return MouseRegion(
       onHover: (event) => setState(() => _isHovered = true),
       onExit: (event) => setState(() => _isHovered = false),
       child: Container(
         padding: EdgeInsets.all(widget.padding),
         decoration: BoxDecoration(
-          color: _isHovered?(widget.hoverColor):(widget.color),
+          color: _isHovered ? (widget.hoverColor) : (widget.color),
           borderRadius: BorderRadius.circular(widget.borderRadius),
           border: Border.all(
             color: widget.borderColor,
@@ -65,22 +64,29 @@ class _ButtonItemWidgetState extends State<ButtonItemWidget> {
             if (widget.menu.icon != null) ...[
               Icon(
                 widget.menu.icon,
-                color: _isHovered?widget.hoverForegroundColor:widget.foregroundColor,
+                color: _isHovered
+                    ? widget.hoverForegroundColor
+                    : widget.foregroundColor,
               ),
               const SizedBox(width: 5),
             ],
             Expanded(
               child: Text(
                 widget.menu.title,
-                style : TextStyle(
-                  color: _isHovered?widget.hoverForegroundColor:widget.foregroundColor,
+                style: TextStyle(
+                  color: _isHovered
+                      ? widget.hoverForegroundColor
+                      : widget.foregroundColor,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.visible,
               ),
             ),
             if (widget.menu.hasChildren && !widget.menu.isBack)
-              Icon(Icons.arrow_right, color: _isHovered?widget.hoverForegroundColor:widget.foregroundColor),
+              Icon(Icons.arrow_right,
+                  color: _isHovered
+                      ? widget.hoverForegroundColor
+                      : widget.foregroundColor),
           ],
         ),
       ),

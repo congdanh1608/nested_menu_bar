@@ -1,7 +1,5 @@
 part of '../nested_menu_bar.dart';
 
-
-
 class CheckboxItemWidget extends StatelessWidget {
   const CheckboxItemWidget({
     required this.menu,

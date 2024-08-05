@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
       )
     );
   }
-  
+
   List<NestedMenuItem> _makeMenus(BuildContext context) {
     return [
       NestedMenuItem(
@@ -145,9 +145,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ## Screenshots
 
-|                            Example                            |
-|:----------------------------------------------------------------------:|
-|<img src="screenshot/screenshot.png" height="200">|
+|                      Example                       |
+| :------------------------------------------------: |
+| <img src="screenshot/screenshot.png" height="200"> |
 
 ## Additional information
 
