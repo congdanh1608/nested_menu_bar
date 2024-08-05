@@ -12,7 +12,6 @@ class NestedMenuBar extends StatefulWidget {
   /// menu height. (default. '45')
   final double height;
 
-
   /// {@macro Nested_menu_item_style}
   final NestedMenuItemStyle itemStyle;
 
@@ -25,8 +24,6 @@ class NestedMenuBar extends StatefulWidget {
   //menu bar properties
   final double? menuBarPadding;
   final Decoration? menuBarDecoration;
-
-
 
   //pop up menu item properties
   final Color? popUpMenuItemBackgroundColor;
@@ -60,7 +57,6 @@ class NestedMenuBar extends StatefulWidget {
       //menu bar properties
       this.menuBarPadding,
       this.menuBarDecoration,
-
 
       //pop up menu items properties
       this.popUpMenuItemBackgroundColor,
@@ -125,60 +121,61 @@ class _NestedMenuBarState extends State<NestedMenuBar> {
         return Container(
           width: size.maxWidth,
           height: widget.height,
-          padding: EdgeInsets.symmetric(horizontal: widget.menuBarPadding??0),
-          decoration:widget.menuBarDecoration?? const BoxDecoration(color: Colors.white),
-            child: ScrollConfiguration(
-              behavior: ScrollConfiguration.of(context).copyWith(
-                dragDevices: {
-                  PointerDeviceKind.touch,
-                  PointerDeviceKind.mouse,
-                },
-              ),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.menus.length,
-                itemBuilder: (_, index) {
-                  return MenuWidget(
-                    widget.menus[index],
-                    goBackButtonText: widget.goBackButtonText,
-                    showBackButton: widget.showBackButton,
-                    height: widget.height,
-                    style: widget.itemStyle,
-                    mode: widget.mode,
-                    selectedMenuKey: _selectedMenuKey,
-                    setSelectedMenuKey: _setSelectedMenuKey,
-
-
-                    //pop up menu item properties
-                    popUpMenuItemBackgroundColor: widget.popUpMenuItemBackgroundColor,
-                    popUpMenuItemHoverBackgroundColor: widget.popUpMenuItemHoverBackgroundColor,
-                    popUpMenuItemBorderRadius: widget.popUpMenuItemBorderRadius,
-                    popUpMenuItemBorderColor: widget.popUpMenuItemBorderColor,
-                    popUpMenuItemBorderWidth: widget.popUpMenuItemBorderWidth,
-                    popUpMenuItemPadding: widget.popUpMenuItemPadding,
-                    popUpMenuItemForegroundColor: widget.popUpMenuItemForegroundColor,
-                    popUpMenuItemHoverForegroundColor: widget.popUpMenuItemHoverForegroundColor,
-
-                    //pop up menu properties
-                    popUpPadding: widget.popUpPadding,
-                    popUpDecoration: widget.popUpDecoration,
-
-                    //menu bar menu properties
-                    menuBarItemColor: widget.menuBarItemColor,
-                    menuBarItemHoverColor: widget.menuBarItemHoverColor,
-                    
-                  );
-                },
-              ),
+          padding: EdgeInsets.symmetric(horizontal: widget.menuBarPadding ?? 0),
+          decoration: widget.menuBarDecoration ??
+              const BoxDecoration(color: Colors.white),
+          child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
+              },
             ),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.menus.length,
+              itemBuilder: (_, index) {
+                return MenuWidget(
+                  widget.menus[index],
+                  goBackButtonText: widget.goBackButtonText,
+                  showBackButton: widget.showBackButton,
+                  height: widget.height,
+                  style: widget.itemStyle,
+                  mode: widget.mode,
+                  selectedMenuKey: _selectedMenuKey,
+                  setSelectedMenuKey: _setSelectedMenuKey,
+
+                  //pop up menu item properties
+                  popUpMenuItemBackgroundColor:
+                      widget.popUpMenuItemBackgroundColor,
+                  popUpMenuItemHoverBackgroundColor:
+                      widget.popUpMenuItemHoverBackgroundColor,
+                  popUpMenuItemBorderRadius: widget.popUpMenuItemBorderRadius,
+                  popUpMenuItemBorderColor: widget.popUpMenuItemBorderColor,
+                  popUpMenuItemBorderWidth: widget.popUpMenuItemBorderWidth,
+                  popUpMenuItemPadding: widget.popUpMenuItemPadding,
+                  popUpMenuItemForegroundColor:
+                      widget.popUpMenuItemForegroundColor,
+                  popUpMenuItemHoverForegroundColor:
+                      widget.popUpMenuItemHoverForegroundColor,
+
+                  //pop up menu properties
+                  popUpPadding: widget.popUpPadding,
+                  popUpDecoration: widget.popUpDecoration,
+
+                  //menu bar menu properties
+                  menuBarItemColor: widget.menuBarItemColor,
+                  menuBarItemHoverColor: widget.menuBarItemHoverColor,
+                );
+              },
+            ),
+          ),
           // ),
         );
       },
     );
   }
 }
-
-
 
 class NestedMenuItemStyle {
   const NestedMenuItemStyle({
@@ -190,7 +187,10 @@ class NestedMenuItemStyle {
     this.activatedColor = Colors.lightBlue,
     this.indicatorColor = const Color(0xFFDCF5FF),
     this.padding = const EdgeInsets.symmetric(horizontal: 15),
-    this.textStyle = const TextStyle(color: Colors.black,fontSize: 14,),
+    this.textStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 14,
+    ),
     this.enableSelectedTopMenu = false,
     this.initialSelectedTopMenuIndex = 0,
     this.selectedTopMenuIconColor = Colors.lightBlue,

@@ -1,8 +1,6 @@
 part of '../nested_menu_bar.dart';
 
 class NestedMenuItem {
-
-
   /// Set a unique ID for the menu widget.
   ///
   /// Prevents [key] from being changed when [NestedMenuItem] is created in the [build] method.
