@@ -16,23 +16,15 @@ Get the package from pub.dev by adding the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  nested_menu_bar: ^0.0.1
+  nested_menu_bar: 1.0.0
 ```
 
 ## Usage
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:multiple_sub_menu/packages/nested_menu_bar/lib/nested_menu_bar.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -132,18 +124,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   NestedMenuItem(title: "Native App Development",onTap: () => message(context, "Native App Development"),
                   children: [
                     NestedMenuItem(title: "Android App Development",onTap: () => message(context, "Android App Development"),),
-                    NestedMenuItem(title: "iOS App Development",onTap: () => message(context, "iOS App Development"),),
-                  ]
-                  ),
+                    NestedMenuItem(title: "iOS App Development",onTap: () => message(context, "iOS App Development"),),]),
                   NestedMenuItem(title: "Cross Platform Development",onTap: () => message(context, "Cross Platform Development"),
                   children: [
                     NestedMenuItem(title: "Flutter App Development",onTap: () => message(context, "Flutter App Development"),),
-                    NestedMenuItem(title: "React Native App Development",onTap: () => message(context, "React Native App Development"),),
-                  ]
-                  
-                  ),
-                ]
-                ),
+                    NestedMenuItem(title: "React Native App Development",onTap: () => message(context, "React Native App Development"),),],),],),
                 NestedMenuItem(title: "Web App Development",onTap: () => message(context, "Web App Development"),),
               ]
             ),
