@@ -152,3 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
 ## Additional information
 
 - For help on editing package code, view the [documentation](https://flutter.dev/docs/development/packages-and-plugins/developing-packages).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
