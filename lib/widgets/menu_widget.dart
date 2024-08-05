@@ -611,6 +611,7 @@ class _ItemWidget extends StatelessWidget {
 
     switch (menu.type) {
       case NestedMenuItemType.button:
+        //* Button item widget is used to create a button like menu item
         return ButtonItemWidget(
           menu: menu,
           color:popUpMenuItemBackgroundColor?? Colors.white,
@@ -623,6 +624,7 @@ class _ItemWidget extends StatelessWidget {
           hoverForegroundColor: popUpMenuItemHoverForegroundColor??Colors.white,
         );
       case NestedMenuItemType.checkbox:
+      //* Checkbox item widget is used to create a checkbox like menu item
         return CheckboxItemWidget(
           menu: menu as NestedMenuItemCheckbox,
           iconScale: iconScale,
@@ -633,6 +635,7 @@ class _ItemWidget extends StatelessWidget {
           textStyle: const TextStyle(color: Colors.black,fontSize: 14,),
         );
       case NestedMenuItemType.radio:
+      //* Radio item widget is used to create a radio like menu item
         return RadioItemWidget(
           menu: menu as NestedMenuItemRadio,
           iconScale: iconScale,
@@ -641,8 +644,10 @@ class _ItemWidget extends StatelessWidget {
           textStyle: const TextStyle(color: Colors.black,fontSize: 14,),
         );
       case NestedMenuItemType.widget:
+      //* Widget item widget is used to create a custom widget like menu item
         return (menu as NestedMenuItemWidget).widget;
       case NestedMenuItemType.divider:
+      //* Divider item widget is used to create a divider like menu item
         final dividerItem = menu as NestedMenuItemDivider;
         return Divider(
           color: dividerItem.color,

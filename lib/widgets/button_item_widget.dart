@@ -17,15 +17,23 @@ class ButtonItemWidget extends StatefulWidget {
 
   final NestedMenuItem menu;
 
-
+//Button item background color
+//!this will effect the background color of the button
   final Color color;
   final Color hoverColor;
 
+//?Button item border customization
+//!this will effect the border radius of the button
   final double borderRadius;
   final Color borderColor;
   final double borderWidth;
+
+//?Button item padding
+//!this will effect the padding of the button
   final double padding;
 
+//?Button item foreground color
+//!this will effect the icon and text color
   final Color foregroundColor;
   final Color hoverForegroundColor;
 
