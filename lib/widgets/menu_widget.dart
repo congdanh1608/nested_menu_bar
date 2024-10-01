@@ -535,7 +535,9 @@ class __AppBarMenuItemState extends State<_AppBarMenuItem> {
     return MouseRegion(
       onHover: (event) => setState(() => _isHovered = true),
       onExit: (event) => setState(() => _isHovered = false),
-      child: Row(
+      child: widget.menu.type == NestedMenuItemType.widget
+          ? (widget.menu as NestedMenuItemWidget).widget
+          : Row(
         children: [
           Icon(
             widget.menu.icon,
